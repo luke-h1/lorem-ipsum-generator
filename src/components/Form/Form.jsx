@@ -1,58 +1,51 @@
-/* eslint-disable */
-import React, {useState} from 'react';
+/* eslint-disable no-unneeded-ternary */
+import React, { useState } from 'react';
+import { LoremIpsum } from 'lorem-ipsum';
 import {
-FormWrapper,
-FormTitle,
-MainForm,
-Input,
-FormDiv,
-SubmitBtn,
-ResultWrapper,
+  FormWrapper,
+  FormTitle,
+  MainForm,
+  FormDiv,
+  SubmitBtn,
+  ResultWrapper,
 } from './FormElements';
 
-const Form = () => { 
-  const [sentences, setSentences] = useState('');
-  const [paragraphs, setParagraphs] = useState('');
-  const [loading, setLoading] = useState(false);
+const Form = () => {
+  const [result, setResult] = useState('');
 
-  const handleSubmit = (e) => { 
-    e.preventDefault();
-    if(sentences === '' || paragraphs === null){
-      return;
-      // show error here
-    }else {
-      getQuotes();
-      setSentences('')
-      setParagraphs('')
-    }
-  }
+  const lorem = new LoremIpsum({
+    sentencesPerParagraph: {
+      max: 20,
+      min: 1,
+    },
+    wordsPerSentence: {
+      max: 20,
+      min: 1,
+    },
+  });
 
-  const getQuotes = () => { 
-    console.log('function is called')
-  }
-
-  const onChange = (e) => setSentences(e.target.value)
-
-  const handleParagraphs = (e) => setParagraphs(e.target.value)
-
-  return ( 
+  const getQuotes = () => {
+    const quotes = lorem.generateParagraphs(1);
+    setResult(quotes);
+  };
+  return (
     <>
-    <FormWrapper>
-      <FormDiv>
-      <FormTitle>Generate some dummy text by selecting the options below!</FormTitle>
-      <MainForm onSubmit={handleSubmit}>
-        <Input value='' placeholder='enter max sentences' min='1' type='number' value={sentences} onChange={onChange}/>
-        <Input value='' placeholder='enter max paragraphs' min='1' type='number' value={paragraphs} onChange={handleParagraphs} />
-        <SubmitBtn >Get Dummy Text</SubmitBtn> 
-      </MainForm>
-      </FormDiv>
-      <ResultWrapper>
-        <p>
-          {/* results go here */}
-        </p>
-      </ResultWrapper>
-    </FormWrapper>
+      <FormWrapper>
+        <FormDiv>
+          <FormTitle>
+            Generate some dummy text by clicking the button below!
+          </FormTitle>
+          <MainForm>
+            <SubmitBtn onClick={getQuotes}>Get Dummy Text</SubmitBtn>
+          </MainForm>
+        </FormDiv>
+        <ResultWrapper>
+          <p>
+            {result ? result : null}
+          </p>
+        </ResultWrapper>
+      </FormWrapper>
     </>
-  )
-}
+  );
+};
 export default Form;

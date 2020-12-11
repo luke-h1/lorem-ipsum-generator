@@ -9,8 +9,9 @@ export const FormWrapper = styled.div`
 
 export const FormTitle = styled.h3`
   color: #000;
+  margin-bottom: 2rem;
 `
-export const MainForm = styled.form`
+export const MainForm = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,7 +29,7 @@ export const FormDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 50vh;
+  min-height: 20vh;
 `
 
 export const SubmitBtn = styled.button`
@@ -51,9 +52,12 @@ export const ResultWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   color: #000;
   p { 
     font-size: 25px;
     font-weight: bold;
+    width: 50%;
+    margin: 0 auto;
   }
 `
