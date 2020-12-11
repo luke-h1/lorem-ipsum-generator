@@ -1,2 +1,2 @@
 /* eslint-disable */
-export const PrimaryFont = '"Roboto", sans-serif';
+export const primaryFont = '"Roboto", sans-serif';
