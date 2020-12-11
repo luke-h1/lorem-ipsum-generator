@@ -44,3 +44,16 @@ export const SubmitBtn = styled.button`
     cursor: pointer;
 }
 `
+
+export const ResultWrapper = styled.div`  
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  p { 
+    font-size: 25px;
+    font-weight: bold;
+  }
+`
